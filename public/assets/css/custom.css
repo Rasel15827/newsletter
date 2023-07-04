@@ -1,0 +1,159 @@
+.h-100vh{
+    min-height: 100vh;
+}
+.h-90vh{
+    min-height: 90vh;
+}
+.h-80vh{
+    min-height: 80vh;
+}
+.h-70vh{
+    min-height: 70vh;
+}
+.h-60vh{
+    min-height: 60vh;
+}
+.h-50vh{
+    min-height: 50vh;
+}
+
+.form-control-primary {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #797fff;
+    appearance: none;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.form-control-success {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #048f13;
+    appearance: none;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.form-control-warning {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ffb979;
+    appearance: none;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.form-control-danger {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e86565;
+    appearance: none;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+td.note {
+    max-width: 200px;
+    /* set maximum width of cell */
+    overflow: hidden;
+    /* hide overflowing text */
+    text-overflow: ellipsis;
+    /* add ellipsis for truncated text */
+    position: relative;
+    /* make the pseudo-element position relative to this cell */
+}
+
+.dataTable-export {
+    padding-right: 1.5rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+table.dataTable, table.dataTable th, table.dataTable td {
+    border-color: #e9ecef;
+    
+}
+table.dataTable.no-footer {
+    border-bottom: 0px solid #111;
+}
+
+table.dataTable th {
+    padding: 0.75rem 1.5rem;
+    opacity: .7;
+    font-weight: bolder;
+    color: #8392ab;
+    text-transform: uppercase;
+    font-size: 0.65rem !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: #ffffff !important;
+    border: 1px solid #979797;
+    border-radius: 20px;
+    background-color: white;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dcdcdc));
+    background: -webkit-linear-gradient(top, white 0%, #dcdcdc 100%);
+    background: -moz-linear-gradient(top, white 0%, #dcdcdc 100%);
+    background: -ms-linear-gradient(top, white 0%, #dcdcdc 100%);
+    background: -o-linear-gradient(top, white 0%, #dcdcdc 100%);
+    background-image: linear-gradient(310deg, #5e72e4 0%, #825ee4 100%);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: .5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    *cursor: hand;
+    color: #333 !important;
+    border: 1px solid #b1b1b1;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+}
+.dataTables_wrapper .dataTables_info {
+    font-size: 0.875rem;
+}
+
+.priority-urgent{
+    color: crimson !important;
+}
+.priority-high{
+    color: #fca24e !important;
+}
+.priority-low{
+    color: #048f13 !important;
+}
