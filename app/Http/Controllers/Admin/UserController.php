@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\SendEmailToUsers;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -44,6 +46,26 @@ class UserController extends Controller
 
         $user->roles()->attach(Role::where('slug', 'user')->first());
         echo json_encode(array('message' => 'users successfully created'));
+    }
+    // create user
+    public function send_email(Request $request)
+    {
+        $request->validate([
+            'subject' => 'required', 'string', 'max:255',
+            'message' => 'required',
+        ]);
+
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('slug', 'user');
+        })->get(); // Fetch all users from the database
+        $subject = $request->subject;
+        $message = $request->message;
+    
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new SendEmailToUsers($subject, $message));
+        }
+
+        echo json_encode(array('message' => 'Email successfully sent'));
     }
     // delete user
     public function show(Request $request)

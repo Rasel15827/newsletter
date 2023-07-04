@@ -27,6 +27,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/users', 'index')->name('admin.users');
         Route::post('/create-user', 'store')->name('admin.user.create');
+        Route::post('/send-mail', 'send_email')->name('admin.send.mail');
         Route::delete('/delete-user', 'destroy')->name('admin.delete.user');
         Route::get('/get-user', 'show')->name('admin.get.user');
     });

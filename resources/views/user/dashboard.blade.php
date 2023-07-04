@@ -87,18 +87,6 @@
     <!-- datatable -->
     <script>
 
-        // if (document.getElementById('data-list')) {
-        //     const dataTableSearch = new simpleDatatables.DataTable("#data-list", {
-        //         searchable: true,
-        //         fixedHeight: false,
-        //         perPage: 10
-        //     });
-        // };
-        // $('#data-list').DataTable({
-        //     pageLength: 10,
-        //     order: [],
-        // });
-
 
         if (document.getElementById('editor')) {
             var quill = new Quill('#editor', {
@@ -106,54 +94,6 @@
             });
         }
 
-        $("#filter").on('submit', function(e) {
-            $("#reset-filter").removeAttr('hidden', true);
-            $("#export-filter").removeAttr('hidden', true);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var data = $('#filter').serialize();
-            e.preventDefault();
-            $.ajax({
-                data: data,
-                url: "{{ route('user.search.data') }}",
-                type: "GET",
-                dataType: 'json',
-                success: function(data) {
-                    $("#table_body").html(data.data)
-                },
-                error: function(data) {
-
-                }
-            });
-        });
-
-        function add_address() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var data = $('#address-form').serialize();
-            $.ajax({
-                data: data,
-                url: "{{ route('user.add.address') }}",
-                type: "post",
-                dataType: 'json',
-                success: function(data) {
-                    Swal.fire({
-                            icon: 'success',
-                            title: 'Successful',
-                            text: 'Address Successfully Updated',
-                        });
-                },
-                error: function(data) {
-
-                }
-            });
-        }
 
         function create_address_form(id,address){
             $("#address_modal").modal('show');

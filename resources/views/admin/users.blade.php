@@ -2,7 +2,7 @@
 @section('content')
     <div class="row h-80vh">
         <div class="row">
-            <div class="col-lg-4 col-md-12 mt-4">
+            <!-- <div class="col-lg-4 col-md-12 mt-4">
                 <div class="card card-body">
                     <h6 class="mb-0">New User</h6>
                     <p class="text-sm mb-0">Create a new user</p>
@@ -46,6 +46,38 @@
                                 class="btn btn-light m-0">Cancel</button>
                             <button type="submit" id="submit_btn" name="button"
                                 class="btn bg-gradient-primary m-0 ms-2">Create User</button>
+
+                            <button id="loader_btn" class="btn bg-gradient-primary m-0 ms-2" type="button" disabled hidden>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
+            <div class="col-lg-4 col-md-12 mt-4">
+                <div class="card card-body">
+                    <h6 class="mb-0">Send Email</h6>
+                    <p class="text-sm mb-0">Send email to all the users</p>
+                    <hr class="horizontal dark my-3">
+                    <form id="form" class="form-control">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject"
+                                    placeholder="Enter First Name" required>
+                            </div>
+                        </div>
+
+                        <label class="form-label  mt-2">Message</label>
+                        <textarea type="email" class="form-control" id="message" name="message" required>Type Your Message</textarea>
+                        <div class="email-error text-danger"> </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" name="button"
+                                class="btn btn-light m-0">Send Message (queue)</button>
+                            <button type="submit" id="submit_btn" name="button"
+                                class="btn bg-gradient-primary m-0 ms-2">Send Message</button>
 
                             <button id="loader_btn" class="btn bg-gradient-primary m-0 ms-2" type="button" disabled hidden>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -135,32 +167,8 @@
 @section('script')
     <!-- datatable -->
     <script>
-        // if (document.getElementById('products-list')) {
-        //     const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
-        //         searchable: true,
-        //         fixedHeight: false,
-        //         perPage: 10
-        //     });
-
-        //     document.querySelectorAll(".export").forEach(function(el) {
-        //         el.addEventListener("click", function(e) {
-        //             var type = el.dataset.type;
-
-        //             var data = {
-        //                 type: type,
-        //                 filename: "soft-ui-" + type,
-        //             };
-
-        //             if (type === "csv") {
-        //                 data.columnDelimiter = "|";
-        //             }
-
-        //             dataTableSearch.export(data);
-        //         });
-        //     });
-        // };
         $('#products-list').DataTable({
-            pageLength: 10,
+            pageLength: 50,
             order: [],
         });
 
@@ -171,6 +179,7 @@
                 theme: 'snow' // Specify theme in configuration
             });
         }
+
         $("#form").on('submit', function(e) {
             $(".email-error").html('');
             $(".password-error").html('');
@@ -186,7 +195,7 @@
             e.preventDefault();
             $.ajax({
                 data: data,
-                url: "{{ route('admin.user.create') }}",
+                url: "{{ route('admin.send.mail') }}",
                 type: "POST",
                 dataType: 'json',
                 success: function(data) {
@@ -196,7 +205,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'User Successfully Created',
+                        text: 'Email Successfully Sent',
                     });
                     setTimeout(() => window.location.href = "{{ route('admin.users') }}", 2000);
 
