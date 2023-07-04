@@ -15,14 +15,10 @@ class DashboardController extends Controller
             $query->where('slug', 'user');
         })->count();
 
-        $total_entries = Data::count();
-
-        return view('admin.dashboard',compact(['total_users','total_entries']));
+        return view('admin.dashboard',compact(['total_users']));
     }
     public function user_index(){
 
-        // $all_data  = Data::orderBy('id','DESC')->get();
-        // return view('user.dashboard',compact(['all_data']));
         return view('user.dashboard');
     }
 }

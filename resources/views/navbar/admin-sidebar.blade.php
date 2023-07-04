@@ -37,16 +37,6 @@ $routeName = Route::currentRouteName();
             <span class="nav-link-text ms-1">Users</span>
           </a>
         </li>
-
-        <li class="nav-item ">      
-          <a class="nav-link @if ($routeName == 'admin.data') active @endif" href="{{ route('admin.data') }}">
-            <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                <i class="ni ni-briefcase-24 text-primary text-sm opacity-10"></i>
-                
-              </div> 
-            <span class="nav-link-text ms-1">All Entries</span>
-          </a>
-        </li>
       </ul>
     </div>
   </aside>
