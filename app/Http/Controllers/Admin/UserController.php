@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Mail\SendEmailToUsers;
 use Illuminate\Validation\Rules;
+use App\Jobs\SendEmailToUsersJob;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -61,10 +62,15 @@ class UserController extends Controller
         $subject = $request->subject;
         $message = $request->message;
     
-        foreach ($users as $user) {
-            Mail::to($user->email)->send(new SendEmailToUsers($subject, $message));
-        }
+        // foreach ($users as $user) {
+            // Mail::to($user->email)->send(new SendEmailToUsers($subject, $message));
+        // }
 
+        
+        foreach ($users as $user) {
+            SendEmailToUsersJob::dispatch($user, $subject, $message);
+        }
+    
         echo json_encode(array('message' => 'Email successfully sent'));
     }
     // delete user
