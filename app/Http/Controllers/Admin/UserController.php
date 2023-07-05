@@ -56,28 +56,31 @@ class UserController extends Controller
             'message' => 'required',
         ]);
 
+
+
         $users = User::whereHas('roles', function ($query) {
             $query->where('slug', 'user');
         })->get(); // Fetch all users from the database
         $subject = $request->subject;
         $message = $request->message;
-    
-        // foreach ($users as $user) {
-            // Mail::to($user->email)->send(new SendEmailToUsers($subject, $message));
-        // }
 
-        
-        foreach ($users as $user) {
-            SendEmailToUsersJob::dispatch($user, $subject, $message);
+        if ($request->queue) {
+            foreach ($users as $user) {
+                SendEmailToUsersJob::dispatch($user, $subject, $message);
+            }
+        } else {
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new SendEmailToUsers($subject, $message));
+            }
         }
-    
+        
         echo json_encode(array('message' => 'Email successfully sent'));
     }
     // delete user
     public function show(Request $request)
     {
         $user = User::find($request->id);
-        echo json_encode(array("user_name"=> $user->first_name." ".$user->last_name,"user_email"=>$user->email,"user_password"=>decrypt($user->plain_password)));
+        echo json_encode(array("user_name" => $user->first_name . " " . $user->last_name, "user_email" => $user->email, "user_password" => decrypt($user->plain_password)));
     }
 
     // delete user
@@ -85,9 +88,9 @@ class UserController extends Controller
     {
         $user = User::find($request->id);
 
-        if($user){
+        if ($user) {
             $user->delete();
         }
-        echo json_encode(array("message"=>"user successfully deleted"));
+        echo json_encode(array("message" => "user successfully deleted"));
     }
 }
